@@ -1,0 +1,187 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Hind", "Marcellus", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-ink: #06070c;
+  --color-navy: #0a0e1a;
+  --color-navy-light: #121a2e;
+  --color-saffron: #ff9933;
+  --color-saffron-light: #ffb366;
+  --color-freedom-green: #138808;
+  --color-freedom-green-light: #2ea825;
+  --color-parchment: #f4ead9;
+  --color-mist: #cfd3dc;
+
+  --animate-chakra-spin: chakra-spin 90s linear infinite;
+  --animate-ember: ember-float 10s ease-in-out infinite;
+  --animate-glow: glow-pulse 3.5s ease-in-out infinite;
+  --animate-tricolor: tricolor-shift 6s ease infinite;
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes chakra-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ember-float {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-40px) translateX(10px);
+    opacity: 0.55;
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 25px 4px rgba(255, 153, 51, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 45px 10px rgba(255, 153, 51, 0.55);
+  }
+}
+
+@keyframes tricolor-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(255, 153, 51, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-saffron), var(--color-freedom-green));
+  border-radius: 999px;
+}
+
+/* Film grain overlay */
+.film-grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.tricolor-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-saffron) 0%,
+    #fff 50%,
+    var(--color-freedom-green) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tricolor-line {
+  background: linear-gradient(
+    90deg,
+    var(--color-saffron),
+    #f5f0e6 50%,
+    var(--color-freedom-green)
+  );
+  background-size: 200% auto;
+}
+
+.glass {
+  background: rgba(10, 14, 26, 0.55);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(244, 234, 217, 0.1);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(244, 234, 217, 0.18);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-saffron);
+  box-shadow: 0 0 8px rgba(255, 153, 51, 0.8);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(244, 234, 217, 0.18);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-saffron);
+  box-shadow: 0 0 8px rgba(255, 153, 51, 0.8);
+  cursor: pointer;
+}

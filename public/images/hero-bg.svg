@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="55%" stop-color="#121a2e"/>
+      <stop offset="100%" stop-color="#06070c"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9933" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ff9933" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="tricolor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9933"/>
+      <stop offset="50%" stop-color="#f4ead9"/>
+      <stop offset="100%" stop-color="#138808"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <ellipse cx="800" cy="120" rx="700" ry="260" fill="url(#glow)"/>
+
+  <!-- Distant dome / monument silhouette -->
+  <g fill="#06070c" opacity="0.9">
+    <rect x="700" y="560" width="200" height="240" />
+    <path d="M700 560 Q800 420 900 560 Z" />
+    <rect x="770" y="480" width="60" height="90" />
+    <rect x="600" y="640" width="90" height="160" />
+    <rect x="910" y="640" width="90" height="160" />
+  </g>
+
+  <!-- Skyline silhouette -->
+  <g fill="#06070c">
+    <rect x="0" y="720" width="1600" height="280"/>
+    <rect x="60" y="640" width="70" height="160"/>
+    <rect x="180" y="600" width="50" height="200"/>
+    <rect x="300" y="660" width="90" height="140"/>
+    <rect x="1050" y="620" width="60" height="180"/>
+    <rect x="1150" y="660" width="100" height="140"/>
+    <rect x="1300" y="600" width="55" height="200"/>
+    <rect x="1420" y="650" width="80" height="150"/>
+  </g>
+
+  <rect x="0" y="984" width="1600" height="16" fill="url(#tricolor)" opacity="0.5"/>
+</svg>

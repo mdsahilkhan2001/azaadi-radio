@@ -61,13 +61,6 @@ const songs = [
     cover: "/images/saare-jahan-se-accha.svg",
   },
   {
-    id: 9,
-    title: "Jai Ho",
-    artist: "A.R. Rahman, Sukhwinder Singh",
-    audio: "/songs/jai-ho.mp3",
-    cover: "/images/jai-ho.svg",
-  },
-  {
     id: 10,
     title: "De Ghumake",
     artist: "Shankar Mahadevan",

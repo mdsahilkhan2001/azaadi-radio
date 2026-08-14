@@ -1,4 +1,5 @@
 import { Radio } from "lucide-react";
+import { YOUTUBE_URL } from "../config/links";
 
 function InstagramIcon(props) {
   return (
@@ -21,13 +22,13 @@ function YoutubeIcon(props) {
 
 const LINKS = [
   { label: "Home", href: "#home" },
-  { label: "Playlist", href: "#playlist" },
+  { label: "Playlist", action: "playlist" },
   { label: "About", href: "#india" },
 ];
 
-export default function Footer() {
+export default function Footer({ onOpenPlaylist }) {
   return (
-    <footer className="relative border-t border-white/5 px-4 pt-16 pb-8">
+    <footer className="relative border-t border-parchment/5 px-4 pt-16 pb-8">
       <div className="absolute inset-x-0 top-0 h-px tricolor-line animate-tricolor" />
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center gap-6">
@@ -45,15 +46,25 @@ export default function Footer() {
         </p>
 
         <div className="flex items-center gap-1">
-          {LINKS.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="px-4 py-2 text-sm text-parchment/70 hover:text-parchment transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) =>
+            l.action === "playlist" ? (
+              <button
+                key={l.label}
+                onClick={onOpenPlaylist}
+                className="px-4 py-2 text-sm text-parchment/70 hover:text-parchment transition-colors"
+              >
+                {l.label}
+              </button>
+            ) : (
+              <a
+                key={l.label}
+                href={l.href}
+                className="px-4 py-2 text-sm text-parchment/70 hover:text-parchment transition-colors"
+              >
+                {l.label}
+              </a>
+            )
+          )}
           <a
             href="https://instagram.com"
             target="_blank"
@@ -64,7 +75,7 @@ export default function Footer() {
             <InstagramIcon />
           </a>
           <a
-            href="https://youtube.com"
+            href={YOUTUBE_URL}
             target="_blank"
             rel="noreferrer"
             className="p-2 text-parchment/70 hover:text-saffron transition-colors"
@@ -78,7 +89,7 @@ export default function Footer() {
           Made with ❤️ for India
         </p>
 
-        <div className="w-full max-w-xs mt-6 pt-6 border-t border-white/5">
+        <div className="w-full max-w-xs mt-6 pt-6 border-t border-parchment/5">
           <p className="text-center font-serif text-[11px] tracking-[0.15em] text-parchment/30 hover:text-saffron-light/70 transition-colors duration-300 cursor-default">
             Powered by SGS CodeWorks
           </p>

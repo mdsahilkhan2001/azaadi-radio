@@ -5,17 +5,40 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Set the theme before first paint to avoid a flash of the wrong theme. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("azaadi-theme");
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
+
     <title>Azaadi Radio — 15 August Independence Day</title>
     <meta name="description" content="Celebrate India's Independence Day with patriotic music, stories and the spirit of freedom." />
+    <link rel="canonical" href="https://independence.sgscodeworks.in/" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://independence.sgscodeworks.in/" />
     <meta property="og:title" content="Azaadi Radio — 15 August Independence Day" />
     <meta property="og:description" content="Celebrate India's Independence Day with patriotic music, stories and the spirit of freedom." />
-    <meta property="og:image" content="/images/og-cover.jpg" />
+    <meta property="og:image" content="https://independence.sgscodeworks.in/images/hero-red-fort-flag.jpg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Azaadi Radio — 15 August Independence Day" />
     <meta name="twitter:description" content="Celebrate India's Independence Day with patriotic music, stories and the spirit of freedom." />
+    <meta name="twitter:image" content="https://independence.sgscodeworks.in/images/hero-red-fort-flag.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

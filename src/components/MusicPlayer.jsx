@@ -46,7 +46,7 @@ export default function MusicPlayer({ player, onOpenPlaylist }) {
         <img
           src={currentSong.cover}
           alt={currentSong.title}
-          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-1 ring-white/10 shrink-0"
+          className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover ring-1 ring-parchment/10 shrink-0"
           loading="lazy"
         />
 
@@ -76,7 +76,7 @@ export default function MusicPlayer({ player, onOpenPlaylist }) {
 
         <button
           onClick={onOpenPlaylist}
-          className="hidden sm:flex p-2 rounded-full text-parchment/70 hover:text-parchment hover:bg-white/10 transition-colors shrink-0"
+          className="hidden sm:flex p-2 rounded-full text-parchment/70 hover:text-parchment hover:bg-parchment/10 transition-colors shrink-0"
           aria-label="Open playlist"
         >
           <ListMusic size={18} />
@@ -109,7 +109,7 @@ export default function MusicPlayer({ player, onOpenPlaylist }) {
 
           <button
             onClick={togglePlay}
-            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-saffron to-orange-600 text-ink animate-glow"
+            className="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-saffron to-orange-600 text-on-accent animate-glow"
             aria-label={isPlaying ? "Pause" : "Play"}
           >
             {isPlaying ? (
@@ -130,7 +130,7 @@ export default function MusicPlayer({ player, onOpenPlaylist }) {
 
         <button
           onClick={onOpenPlaylist}
-          className="sm:hidden p-2 rounded-full text-parchment/70 hover:text-parchment hover:bg-white/10 transition-colors"
+          className="sm:hidden p-2 rounded-full text-parchment/70 hover:text-parchment hover:bg-parchment/10 transition-colors"
           aria-label="Open playlist"
         >
           <ListMusic size={18} />

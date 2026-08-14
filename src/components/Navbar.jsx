@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Radio } from "lucide-react";
+import { PORTFOLIO_URL, YOUTUBE_URL } from "../config/links";
+import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#india" },
-  { label: "Songs", href: "#playlist" },
+  { label: "Songs", action: "playlist" },
   { label: "India", href: "#timeline" },
-  { label: "Spotify", href: "https://open.spotify.com" },
-  { label: "YouTube", href: "https://youtube.com" },
+  { label: "Portfolio", href: PORTFOLIO_URL, external: true },
+  { label: "YouTube", href: YOUTUBE_URL, external: true },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenPlaylist }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -47,24 +49,41 @@ export default function Navbar() {
         </a>
 
         <div className="hidden md:flex items-center gap-1">
-          {LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-4 py-2 rounded-full text-sm text-parchment/80 hover:text-parchment hover:bg-white/10 transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
+          {LINKS.map((link) =>
+            link.action === "playlist" ? (
+              <button
+                key={link.label}
+                onClick={onOpenPlaylist}
+                className="px-4 py-2 rounded-full text-sm text-parchment/80 hover:text-parchment hover:bg-parchment/10 transition-colors"
+              >
+                {link.label}
+              </button>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="px-4 py-2 rounded-full text-sm text-parchment/80 hover:text-parchment hover:bg-parchment/10 transition-colors"
+              >
+                {link.label}
+              </a>
+            )
+          )}
+          <span className="w-px h-5 bg-parchment/15 mx-1" />
+          <ThemeToggle />
         </div>
 
-        <button
-          className="md:hidden text-parchment p-2 rounded-full hover:bg-white/10"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-parchment p-2 rounded-full hover:bg-parchment/10"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -76,16 +95,31 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
             className="md:hidden absolute top-20 w-[calc(100%-2rem)] max-w-6xl rounded-3xl glass p-3 flex flex-col gap-1"
           >
-            {LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="px-4 py-3 rounded-2xl text-sm text-parchment/85 hover:text-parchment hover:bg-white/10 transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            {LINKS.map((link) =>
+              link.action === "playlist" ? (
+                <button
+                  key={link.label}
+                  onClick={() => {
+                    setOpen(false);
+                    onOpenPlaylist();
+                  }}
+                  className="text-left px-4 py-3 rounded-2xl text-sm text-parchment/85 hover:text-parchment hover:bg-parchment/10 transition-colors"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={() => setOpen(false)}
+                  className="px-4 py-3 rounded-2xl text-sm text-parchment/85 hover:text-parchment hover:bg-parchment/10 transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
           </motion.div>
         )}
       </AnimatePresence>

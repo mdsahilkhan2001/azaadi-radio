@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+/*
+  Theme token map
+  ----------------
+  ink            bg-primary        page/card background
+  navy           bg-secondary      elevated / glass surface base
+  navy-light     bg-tertiary       lighter panel variant
+  parchment      text-primary      text & borders on page/card surfaces
+  saffron        accent-primary    brand accent (buttons, links, brand text)
+  saffron-light  accent-primary-soft  small labels / eyebrow text
+  freedom-green / freedom-green-light   accent-secondary (same roles as saffron)
+  mist           on-image          text/decor drawn directly over photos
+                                     (stays light in both themes — the photo
+                                     scrim beneath it stays dark in both themes)
+  on-accent      text drawn on top of bright saffron/green buttons & badges
+                                     (stays dark in both themes)
+  scrim          photo darkening overlays + modal backdrops
+                                     (always dark, warmer tint in light mode)
+
+  Every one of these is a Tailwind color token (via @theme), so `bg-ink`,
+  `text-parchment/70`, `border-parchment/10` etc. are already theme-aware
+  everywhere they're used — swapping [data-theme] just redefines the
+  variables below.
+*/
+
 @theme {
   --font-display: "Hind", "Marcellus", serif;
   --font-serif: "Cormorant Garamond", serif;
@@ -13,13 +37,49 @@
   --color-freedom-green: #138808;
   --color-freedom-green-light: #2ea825;
   --color-parchment: #f4ead9;
-  --color-mist: #cfd3dc;
+  --color-mist: #f4ead9;
+  --color-on-accent: #1a0f06;
+  --color-scrim: #06070c;
 
   --animate-chakra-spin: chakra-spin 90s linear infinite;
   --animate-ember: ember-float 10s ease-in-out infinite;
   --animate-glow: glow-pulse 3.5s ease-in-out infinite;
   --animate-tricolor: tricolor-shift 6s ease infinite;
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Light theme — warm ivory "Independence Day editorial" palette.
+   Explicit selector wins over the @theme-generated :root block above
+   regardless of source order, so this reliably overrides it. */
+:root[data-theme="light"] {
+  --color-ink: #f9f4ea;
+  --color-navy: #f0e6d2;
+  --color-navy-light: #f4ecdd;
+  --color-saffron: #d9720f;
+  --color-saffron-light: #b75209;
+  --color-freedom-green: #0f7a0a;
+  --color-freedom-green-light: #1f7a1a;
+  --color-parchment: #241a10;
+  --color-mist: #faf3e6;
+  --color-on-accent: #1a0f06;
+  --color-scrim: #2a1c10;
+}
+
+/* No saved/explicit preference yet: follow the OS setting. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --color-ink: #f9f4ea;
+    --color-navy: #f0e6d2;
+    --color-navy-light: #f4ecdd;
+    --color-saffron: #d9720f;
+    --color-saffron-light: #b75209;
+    --color-freedom-green: #0f7a0a;
+    --color-freedom-green-light: #1f7a1a;
+    --color-parchment: #241a10;
+    --color-mist: #faf3e6;
+    --color-on-accent: #1a0f06;
+    --color-scrim: #2a1c10;
+  }
 }
 
 @keyframes chakra-spin {
@@ -93,9 +153,23 @@ body {
   overflow-x: clip;
 }
 
+/* Smooth theme switch — colors only, never layout/transform, so it stays
+   lightweight and doesn't animate images or large elements. */
+body,
+.glass,
+.tricolor-line,
+button,
+a,
+input[type="range"],
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-webkit-slider-thumb {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
 ::selection {
   background: rgba(255, 153, 51, 0.35);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 ::-webkit-scrollbar {
@@ -107,6 +181,13 @@ body {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--color-saffron), var(--color-freedom-green));
   border-radius: 999px;
+}
+
+/* Keyboard focus — always visible, in both themes. */
+:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Film grain overlay */
@@ -144,10 +225,10 @@ body {
 }
 
 .glass {
-  background: rgba(10, 14, 26, 0.55);
+  background: color-mix(in srgb, var(--color-navy) 55%, transparent);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid rgba(244, 234, 217, 0.1);
+  border: 1px solid color-mix(in srgb, var(--color-parchment) 10%, transparent);
 }
 
 input[type="range"] {
@@ -158,7 +239,7 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-runnable-track {
   height: 4px;
   border-radius: 999px;
-  background: rgba(244, 234, 217, 0.18);
+  background: color-mix(in srgb, var(--color-parchment) 18%, transparent);
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -174,7 +255,7 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-track {
   height: 4px;
   border-radius: 999px;
-  background: rgba(244, 234, 217, 0.18);
+  background: color-mix(in srgb, var(--color-parchment) 18%, transparent);
 }
 input[type="range"]::-moz-range-thumb {
   width: 14px;

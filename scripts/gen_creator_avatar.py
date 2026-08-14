@@ -1,0 +1,40 @@
+import os
+
+OUT = os.path.join(os.path.dirname(__file__), "..", "public", "images", "sahil-khan-avatar.svg")
+
+svg = """<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121a2e"/>
+      <stop offset="100%" stop-color="#06070c"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9933"/>
+      <stop offset="50%" stop-color="#f4ead9"/>
+      <stop offset="100%" stop-color="#138808"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="480" height="480" fill="url(#bg)"/>
+  <rect width="480" height="480" fill="url(#glow)"/>
+
+  <circle cx="240" cy="240" r="170" fill="none" stroke="url(#ring)" stroke-width="3"/>
+  <circle cx="240" cy="240" r="150" fill="none" stroke="#f4ead9" stroke-opacity="0.12" stroke-width="1"/>
+
+  <text
+    x="240" y="272"
+    text-anchor="middle"
+    font-family="Marcellus, 'Cormorant Garamond', serif"
+    font-size="140"
+    fill="#f4ead9"
+    fill-opacity="0.92"
+  >SK</text>
+</svg>"""
+
+with open(OUT, "w", encoding="utf-8") as f:
+    f.write(svg)
+print("wrote sahil-khan-avatar.svg")

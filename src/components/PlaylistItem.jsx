@@ -8,8 +8,8 @@ export default function PlaylistItem({ song, index, isActive, isPlaying, onSelec
       whileHover={{ x: 4 }}
       className={`w-full flex items-center gap-4 rounded-2xl px-3 sm:px-4 py-3 text-left transition-colors border ${
         isActive
-          ? "bg-white/10 border-saffron/40"
-          : "bg-white/[0.02] border-white/5 hover:bg-white/5"
+          ? "bg-parchment/10 border-saffron/40"
+          : "bg-parchment/[0.02] border-parchment/5 hover:bg-parchment/5"
       }`}
     >
       <span
@@ -24,7 +24,7 @@ export default function PlaylistItem({ song, index, isActive, isPlaying, onSelec
         src={song.cover}
         alt={song.title}
         loading="lazy"
-        className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover ring-1 ring-white/10 shrink-0"
+        className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover ring-1 ring-parchment/10 shrink-0"
       />
 
       <div className="min-w-0 flex-1">
@@ -43,8 +43,8 @@ export default function PlaylistItem({ song, index, isActive, isPlaying, onSelec
       <span
         className={`flex items-center justify-center w-9 h-9 rounded-full shrink-0 transition-colors ${
           isActive
-            ? "bg-saffron text-ink"
-            : "bg-white/5 text-parchment/70 group-hover:bg-white/10"
+            ? "bg-saffron text-on-accent"
+            : "bg-parchment/5 text-parchment/70 group-hover:bg-parchment/10"
         }`}
       >
         {isActive && isPlaying ? (

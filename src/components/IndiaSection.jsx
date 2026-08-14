@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const ASPECTS = [
   { title: "Culture", desc: "A living tapestry of festivals, art and language.", image: "/images/india-culture.jpg" },
   { title: "Unity", desc: "One nation, bound together across every border.", image: "/images/india-unity.jpg" },
-  { title: "Diversity", desc: "A thousand tongues singing the same anthem.", image: "/images/india-diversity.svg" },
+  { title: "Diversity", desc: "A thousand tongues singing the same anthem.", image: "/images/india-diversity.jpg", imagePosition: "center 15%" },
   { title: "Freedom", desc: "Won with sacrifice, carried forward every day.", image: "/images/india-freedom.jpg" },
   { title: "Courage", desc: "The quiet strength behind every act of defiance.", image: "/images/india-courage.jpg" },
   { title: "Heritage", desc: "Centuries of memory etched into every street.", image: "/images/india-heritage.jpg" },
@@ -51,20 +51,24 @@ export default function IndiaSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
-            className="group relative aspect-[3/4] rounded-3xl overflow-hidden ring-1 ring-white/10"
+            className="group relative aspect-[3/4] rounded-3xl overflow-hidden ring-1 ring-parchment/10"
           >
             <img
               src={a.image}
               alt={a.title}
               loading="lazy"
+              style={a.imagePosition ? { objectPosition: a.imagePosition } : undefined}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+            {/* Caption sits on the photo, so it always uses the light,
+               non-flipping on-image tone — the scrim beneath stays dark
+               in both themes for the same reason. */}
+            <div className="absolute inset-0 bg-gradient-to-t from-scrim via-scrim/20 to-transparent" />
             <div className="absolute bottom-0 p-4 sm:p-5">
-              <p className="font-display text-xl sm:text-2xl text-parchment">
+              <p className="font-display text-xl sm:text-2xl text-mist">
                 {a.title}
               </p>
-              <p className="mt-1 text-xs sm:text-sm text-parchment/60 leading-snug">
+              <p className="mt-1 text-xs sm:text-sm text-mist/70 leading-snug">
                 {a.desc}
               </p>
             </div>

@@ -50,17 +50,20 @@ export default function Hero({ player, onOpenPlaylist }) {
       id="home"
       className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden px-4 pt-28 pb-16"
     >
-      {/* Background */}
+      {/* Background — the hero photo stays a dark, cinematic backdrop in
+         both themes (only the scrim tone and the text/UI drawn on top of
+         it adapt), so this base gradient is intentionally not theme-reactive. */}
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,_#121a2e_0%,_#06070c_60%)]" />
       <div
         className="absolute inset-0 -z-20 bg-[url('/images/hero-red-fort-flag.jpg')] bg-cover bg-center opacity-45"
         style={{ filter: "saturate(0.85) brightness(0.7)" }}
       />
-      <div className="absolute inset-0 -z-10 bg-ink/45" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 -z-10 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-scrim/45" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 -z-10 bg-gradient-to-t from-scrim via-scrim/60 to-transparent" />
 
-      {/* Ashoka Chakra */}
-      <AshokaChakra className="absolute w-[130vw] max-w-[900px] aspect-square text-parchment/[0.06] animate-chakra-spin pointer-events-none" />
+      {/* Ashoka Chakra — decorative overlay on the hero photo, stays light
+         in both themes since the photo scrim beneath it stays dark. */}
+      <AshokaChakra className="absolute w-[130vw] max-w-[900px] aspect-square text-mist/[0.06] animate-chakra-spin pointer-events-none" />
 
       {/* Embers */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -121,7 +124,7 @@ export default function Hero({ player, onOpenPlaylist }) {
 
         <motion.h2
           variants={itemVariants}
-          className="font-display leading-[0.95] text-parchment/90 text-[2.4rem] sm:text-[3.5rem] md:text-[4.5rem] -mt-2 sm:-mt-4"
+          className="font-display leading-[0.95] text-mist/90 text-[2.4rem] sm:text-[3.5rem] md:text-[4.5rem] -mt-2 sm:-mt-4"
         >
           का जश्न
         </motion.h2>
@@ -130,7 +133,7 @@ export default function Hero({ player, onOpenPlaylist }) {
           variants={itemVariants}
           className="mt-8 flex flex-col items-center gap-2"
         >
-          <p className="font-serif italic text-lg sm:text-xl text-parchment/70 tracking-wide">
+          <p className="font-serif italic text-lg sm:text-xl text-mist/70 tracking-wide">
             15 August 1947 — 2026
           </p>
           <p className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-freedom-green-light">
@@ -141,7 +144,7 @@ export default function Hero({ player, onOpenPlaylist }) {
         <motion.div variants={itemVariants} className="w-full mt-10 sm:mt-12">
           <MusicPlayer player={player} onOpenPlaylist={onOpenPlaylist} />
           {!player.isPlaying && (
-            <p className="mt-4 text-xs tracking-[0.25em] uppercase text-parchment/50">
+            <p className="mt-4 text-xs tracking-[0.25em] uppercase text-mist/50">
               Press Play &amp; Celebrate India
             </p>
           )}
@@ -152,7 +155,7 @@ export default function Hero({ player, onOpenPlaylist }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 w-px h-14 bg-gradient-to-b from-transparent via-parchment/40 to-transparent"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 w-px h-14 bg-gradient-to-b from-transparent via-mist/40 to-transparent"
       />
     </section>
   );
